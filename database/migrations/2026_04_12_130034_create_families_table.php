@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('families', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('candidate_id')->constrained()->cascadeOnDelete();
+            $table->string('relation_status');
+            $table->string('name');
+            $table->enum('gender', ['Pria', 'Wanita']);
+            $table->string('pob')->nullable();
+            $table->date('dob')->nullable();
+            $table->string('education')->nullable();
+            $table->string('job')->nullable();
             $table->timestamps();
         });
     }

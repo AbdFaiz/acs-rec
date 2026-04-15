@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('skills', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('candidate_id')->constrained()->cascadeOnDelete();
+            $table->enum('type', ['Bahasa', 'Komputer', 'Mengemudi', 'Lainnya']);
+            $table->string('name');
+            $table->string('level')->nullable(); // Basic, Intermediate, Advanced
             $table->timestamps();
         });
     }

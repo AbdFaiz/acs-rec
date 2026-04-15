@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('organizations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('candidate_id')->constrained()->cascadeOnDelete();
+            $table->string('name');
+            $table->string('position');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->timestamps();
         });
     }

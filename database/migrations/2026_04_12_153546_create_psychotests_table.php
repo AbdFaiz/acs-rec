@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('psychotests', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('description');
+            $table->integer('duration'); // in minutes
+            $table->foreignId('position_id')->nullable()->constrained(); // null for all positions
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

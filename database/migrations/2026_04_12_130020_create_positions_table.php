@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('region_id')->constrained('regions', 'id')->onDelete('set null');
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->boolean('has_psychotest')->default(true);
+            $table->boolean('is_active')->default(true);
+            $table->integer('order')->default(0);
             $table->timestamps();
         });
     }

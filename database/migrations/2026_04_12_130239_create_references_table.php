@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('references', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('candidate_id')->constrained()->cascadeOnDelete();
+            $table->string('name');
+            $table->text('address');
+            $table->string('phone');
+            $table->string('relationship');
             $table->timestamps();
         });
     }

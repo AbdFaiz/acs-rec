@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('education', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('candidate_id')->constrained()->cascadeOnDelete();
+            $table->string('level'); // SD, SMP, SMA, D3, S1, S2
+            $table->string('institution');
+            $table->string('major')->nullable();
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->boolean('has_certificate')->default(true);
             $table->timestamps();
         });
     }
