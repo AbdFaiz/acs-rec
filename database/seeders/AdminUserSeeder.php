@@ -23,17 +23,17 @@ class AdminUserSeeder extends Seeder
         // Super Admin (bisa lihat semua region)
         $superAdmin = User::create([
             'name' => 'Super Admin',
-            'email' => 'superadmin@recruitment.com',
+            'email' => 'administrator@acs.com',
             'password' => Hash::make('password'),
             'is_active' => true,
-            'region_id' => null, 
+            'region_id' => null,
         ]);
         $superAdmin->assignRole('superadmin');
 
         // HRD Jakarta (hanya lihat candidate di region Jakarta)
         $hrdJakarta = User::create([
             'name' => 'HRD Jakarta',
-            'email' => 'hrd.jakarta@recruitment.com',
+            'email' => 'hrd.jakarta@acs.com',
             'password' => Hash::make('password'),
             'phone' => '081234567891',
             'is_active' => true,
@@ -44,7 +44,7 @@ class AdminUserSeeder extends Seeder
         // HRD Bandung (hanya lihat candidate di region Bandung)
         $hrdBandung = User::create([
             'name' => 'HRD Bandung',
-            'email' => 'hrd.bandung@recruitment.com',
+            'email' => 'hrd.bandung@acs.com',
             'password' => Hash::make('password'),
             'phone' => '081234567892',
             'is_active' => true,
@@ -55,7 +55,7 @@ class AdminUserSeeder extends Seeder
         // HCM Surabaya (hanya lihat candidate di region Surabaya)
         $hcmSurabaya = User::create([
             'name' => 'HCM Surabaya',
-            'email' => 'hcm.surabaya@recruitment.com',
+            'email' => 'hcm.surabaya@acs.com',
             'password' => Hash::make('password'),
             'phone' => '081234567893',
             'is_active' => true,
@@ -73,7 +73,7 @@ class AdminUserSeeder extends Seeder
             'region_id' => $jakarta->id,
         ]);
         $candidateJakarta->assignRole('candidate');
-        
+
         // Sample candidate Bandung
         $candidateBandung = User::create([
             'name' => 'Jane Smith',

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('region_id')->constrained('regions', 'id')->onDelete('set null');
+            $table->foreignId('region_id')->constrained('regions', 'id')->onDelete('cascade');
             $table->string('name');
             $table->text('description')->nullable();
             $table->boolean('has_psychotest')->default(true);
