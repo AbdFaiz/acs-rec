@@ -5,11 +5,12 @@ import { useInitials } from '@/composables/useInitials';
 import type { User } from '@/types';
 
 type Props = {
-    user: User;
+    user?: User | null;
     showEmail?: boolean;
 };
 
 const props = withDefaults(defineProps<Props>(), {
+    user: null,
     showEmail: false,
 });
 
@@ -22,17 +23,22 @@ const showAvatar = computed(
 </script>
 
 <template>
-    <Avatar class="h-8 w-8 overflow-hidden rounded-lg">
-        <AvatarImage v-if="showAvatar" :src="user.avatar!" :alt="user.name" />
-        <AvatarFallback class="rounded-lg text-black dark:text-white">
-            {{ getInitials(user.name) }}
-        </AvatarFallback>
-    </Avatar>
-
-    <div class="grid flex-1 text-left text-sm leading-tight">
-        <span class="truncate font-medium">{{ user.name }}</span>
-        <span v-if="showEmail" class="truncate text-xs text-muted-foreground">{{
-            user.email
-        }}</span>
+    <div v-if="!props.user" class="grid flex-1 text-left text-sm leading-tight">
+        <span class="truncate font-medium text-muted-foreground">Unknown User</span>
     </div>
+    <template v-else>
+        <Avatar class="h-8 w-8 overflow-hidden rounded-lg">
+            <AvatarImage v-if="showAvatar" :src="props.user.avatar!" :alt="props.user.name" />
+            <AvatarFallback class="rounded-lg text-black dark:text-white">
+                {{ getInitials(props.user.name) }}
+            </AvatarFallback>
+        </Avatar>
+
+        <div class="grid flex-1 text-left text-sm leading-tight">
+            <span class="truncate font-medium">{{ props.user.name }}</span>
+            <span v-if="showEmail" class="truncate text-xs text-muted-foreground">{{
+                props.user.email
+            }}</span>
+        </div>
+    </template>
 </template>
